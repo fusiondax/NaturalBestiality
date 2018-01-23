@@ -1,36 +1,50 @@
 package com.game;
 
-import com.badlogic.gdx.ApplicationAdapter;
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
+import com.badlogic.gdx.physics.box2d.World;
 
-public class NaturalBestiality extends ApplicationAdapter {
-	private static Session session;
-	SpriteBatch batch;
+import render.MainMenuScreen;
+
+public class NaturalBestiality extends Game {
+	
+	
+	public World world;
+	public SpriteBatch batch;
+	public BitmapFont font;
+	
+	public Box2DDebugRenderer debug;
+	
 	
 	@Override
 	public void create () {
 		
-		session = new Session();
+		world = new World(new Vector2(0, -10), true);
+		
+		debug = new Box2DDebugRenderer();
+		
 		batch = new SpriteBatch();
+		
+		font = new BitmapFont();
+		
+		this.setScreen(new MainMenuScreen(this));
 	}
 	
 
 	@Override
 	public void render () {
-		session.getGame().getEnviro().update();
-		Gdx.gl.glClearColor(1, 1, 1, 1);
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		batch.begin();
 		
-		//batch.draw(img, 0, 0);
-		batch.end();
+		super.render();
 	}
 	
 	@Override
 	public void dispose () {
 		batch.dispose();
+		font.dispose();
 	}
 }
