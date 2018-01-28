@@ -13,7 +13,6 @@ import render.MainMenuScreen;
 
 public class NaturalBestiality extends Game {
 	
-	
 	public World world;
 	public SpriteBatch batch;
 	public BitmapFont font;
@@ -24,7 +23,7 @@ public class NaturalBestiality extends Game {
 	@Override
 	public void create () {
 		
-		world = new World(new Vector2(0, -10), true);
+		initWorld();
 		
 		debug = new Box2DDebugRenderer();
 		
@@ -35,6 +34,12 @@ public class NaturalBestiality extends Game {
 		this.setScreen(new MainMenuScreen(this));
 	}
 	
+
+	private void initWorld() {
+		
+		world = new World(new Vector2(0, -10), true);
+	}
+
 
 	@Override
 	public void render () {
