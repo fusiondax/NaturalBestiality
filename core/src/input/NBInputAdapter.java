@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.game.NaturalBestiality;
 
 import render.GameScreen;
+import render.GameScreen.PlayerStance;
 
 public class NBInputAdapter extends InputAdapter {
 	
@@ -44,6 +45,7 @@ public class NBInputAdapter extends InputAdapter {
 	{
 		switch(key)
 		{
+			//camera movement
 			case Keys.LEFT:
 			{
 				camera.translate(-0.2f, 0);
@@ -64,7 +66,8 @@ public class NBInputAdapter extends InputAdapter {
 				camera.translate(0, -0.2f);
 				break;
 			}
-			case Keys.S:
+			//toggle auto-step
+			case Keys.P:
 			{
 				if(screen.autoStep)
 				{
@@ -76,7 +79,8 @@ public class NBInputAdapter extends InputAdapter {
 				}
 				break;
 			}
-			case Keys.D:
+			//step simulation (only when paused)
+			case Keys.L:
 			{	
 				if(!screen.autoStep)
 				{
@@ -84,6 +88,44 @@ public class NBInputAdapter extends InputAdapter {
 				}
 				break;
 			}
+			
+			//player standing
+			case Keys.S:
+			{	
+				screen.playerStance = PlayerStance.Standing;
+				break;
+			}
+			//player lying down
+			case Keys.C:
+			{	
+				screen.playerStance = PlayerStance.LyingDown;
+				break;
+			}
+			//player curl into ball
+			case Keys.X:
+			{	
+				screen.playerStance = PlayerStance.CurlIntoBall;
+				break;
+			}
+			//player play dead
+			case Keys.Z:
+			{	
+				screen.playerStance = PlayerStance.PlayDead;
+				break;
+			}
+			//player moving right
+			case Keys.D:
+			{	
+				
+				break;
+			}
+			//player moving left
+			case Keys.A:
+			{	
+				
+				break;
+			}
+			
 		}
 		return true;
 	}
